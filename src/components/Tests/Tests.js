@@ -11,7 +11,7 @@ const Tests = ({ subjects }) => {
                     <img src={QuizPhoto} alt='' className='w-full lg:p-20 lg:pt-0 quiz-photo lg:ml-20 lg:absolute lg:-mt-20'></img>
                 </div>
                 <div className='subject'>
-                    <h3 className='mt-16 text-white text-3xl font-semibold'>Subjects</h3>
+                    <h3 className='mt-16 text-white text-center text-3xl font-semibold'>Subjects</h3>
                     <div className='my-4 lg:grid grid-cols-2 gap-4'>
                         {
                             subjects.map((subject) => <Subject key={subject.id} subject={subject}></Subject>)

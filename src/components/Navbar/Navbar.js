@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../../image/logo.png"
+import { authContext } from '../../context/UserContext';
 
 
 const Navbar = () => {
+    const { user, logout } = useContext(authContext)
+    const handleLogOut = () => {
+        logout()
+    }
     return (
         <div className="navbar bg-teal-500 x-6 rounded">
             <div className="navbar-start">
@@ -25,6 +30,9 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end pr-6">
+                {user?.uid &&
+                    <span className='text-white'>{user.email}</span>
+                }
                 <div className="dropdown pr-8">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -33,9 +41,22 @@ const Navbar = () => {
                         <li className='mr-2'><Link to="/topic" >Topic</Link></li>
                         <li className='mr-2'><Link to="/statistic">Statistic </Link></li>
                         <li className='mr-2'><Link to="/blog">Blog </Link></li>
+                        <li>
+
+                            {
+                                user?.uid ?
+
+                                    <Link to="#" onClick={handleLogOut} className="btn btn-info text-white "><small>LogOut</small></Link>
+                                    :
+                                    <Link to="/login" className="btn btn-info text-white "><small>Login</small></Link>
+                            }
+                        </li>
                     </ul>
                 </div>
-                <Link to="" className="btn btn-info text-white hidden lg:flex">Get started</Link>
+                {user?.uid ?
+                    <Link to="" onClick={handleLogOut} className="btn btn-info text-white hidden lg:flex">LogOut</Link>
+                    :
+                    <Link to="/login" className="btn btn-info text-white hidden lg:flex">Login</Link>}
             </div>
         </div>
     );

@@ -13,13 +13,13 @@ import {
 const Statistic = () => {
     const questionAmount = useLoaderData()
     return (
-        <div>
+        <div className='m-10 w-2/3 mx-auto'>
             <BarChart
-                width={500}
-                height={300}
+                width={700}
+                height={500}
                 data={questionAmount?.data}
                 margin={{
-                    top: 5,
+                    top: 15,
                     right: 30,
                     left: 20,
                     bottom: 5
